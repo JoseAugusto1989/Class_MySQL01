@@ -41,15 +41,18 @@ alter table departamento add constraint primary key (cod);
 -- origem = departamento (cod)
 -- destino = empregado (cod_departamento)
 
-alter table empregado 
+alter table empregado add constraint primary key (cod);
 	add constraint fk_departamento
 	foreign key (cod_departamento)
 	references departamento (cod)
 	on delete set default 
 	on update cascade
 	
+-- como deletar uma chave estrangeira FK	
+alter table empregado drop constraint fk_departamento;
 
-
+-- como deletar uma chave primaria PK
+alter table empregado drop primary key;
 
 
 
