@@ -150,3 +150,66 @@ ALTER TABLE PlanoSaude ADD CONSTRAINT FK_PlanoSaude_4
 ALTER TABLE Leitos ADD CONSTRAINT FK_Leitos_2
     FOREIGN KEY (Id_Paciente)
     REFERENCES Paciente (Id_Paciente);
+    
+   
+/* testes */
+   
+select * 
+from enfermeirachefe 
+
+select *
+from enfermeira
+
+select *
+from medico 
+
+
+    
+insert
+into medico (Id_Medico, CRM, Nome, CPF)
+values (1, 123456, 'João Fernando Belluschi', '123.332.334-89')
+
+insert
+into medico (Id_Medico, CRM, Nome, CPF)
+values (2, 456656, 'Lucas Oliveira', '443.356.774-19')
+
+insert
+into medico (Id_Medico, CRM, Nome, CPF)
+values (3, 120098, 'Luis Gustavo Souza', '553.672.834-19')
+
+insert
+into enfermeira (Id_Enfermeira, Id_EnfChefe, NumeroCRE, Nome, CPF)
+values (1, 1, 906511, 'Hanna Carolina da Silva', '099.375.441-11')
+
+insert
+into enfermeira (Id_Enfermeira, Id_EnfChefe, NumeroCRE, Nome, CPF)
+values (2, 1, 112906, 'Carol Santos', '559.367.091-10')
+
+insert
+into enfermeira (Id_Enfermeira, Id_EnfChefe, NumeroCRE, Nome, CPF)
+values (3, 2, 998054, 'Marcia Silva Santos', '119.445.221-61')
+
+
+insert
+into enfermeirachefe (Id_EnfChefe, NumeroCRE, Nome, CPF)
+values (1, 743995, 'Maria Eduarda Silva', '108.675.564-88')
+
+insert
+into enfermeirachefe (Id_EnfChefe, NumeroCRE, Nome, CPF)
+values (2, 744525, 'Joana Silva Santos', '098.675.774-21')
+
+insert
+into enfermeirachefe (Id_EnfChefe, NumeroCRE, Nome, CPF)
+values (3, 236525, 'Sandra Moreira Gomes', '112.556.794-98')
+
+
+
+
+
+
+
+
+
+
+
+
