@@ -35,6 +35,13 @@ insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values 
 insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (19, 'Márcia', 27,  50, 'F', 'RJ','Cabo Frio', False);
 
 
+ -- select 
+ -- from 
+ -- where 
+ -- group by 
+ -- having 
+ -- order by 
+
  -- exercicios
 
 select * from Pessoa;
@@ -64,5 +71,17 @@ select round(avg(idade), 2) as mediaIdade, cidade from pessoa
 group by cidade;
 
  -- 7
+select round(avg(idade),2) as media, sexo, cidade from pessoa 
+group by sexo, cidade order by cidade;
+
+ -- 8
+select avg(idade) as media, cidade from pessoa
+group by cidade having avg(idade) < 35 order by cidade;
+
+ -- 9
+select count(cpf) qtd, cidade from pessoa group by cidade;
+
+select count(cpf) qtd, cidade from pessoa group by cidade 
+having count(cpf) > 2 order by qtd;
 
 
