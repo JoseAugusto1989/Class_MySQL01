@@ -1,4 +1,4 @@
-create table Pessoa(
+create table Pessoa (
 	cpf bigint not null,
 	nome varchar(30) not null,
 	idade integer not null,
@@ -7,52 +7,62 @@ create table Pessoa(
 	estado varchar(30) not null,
 	cidade varchar(40) not null,
 	ativo boolean not null
-); 
+);
 
-	-- insere dados na tabela 
-	-- depois da tabela preenchida, comandos para para mostrar a table 
-	-- SUM "soma", AVG "média dos valores", COUNT "contagem de linhas", MIN "menor valor", MAX "maior valor"
-	-- WHERE "filtro"
+alter table Pessoa add constraint pessoa_pk primary key (cpf); 
 
-insert into Pessoa values(108345, 'Jose', 32, 'M', 85, 'MG', 'Pouso Alegre', true);
-insert into Pessoa values(234543, 'Mauro', 23, 'M', 90, 'SP', 'São Paulo', true);
-insert into Pessoa values(234231, 'Pedro', 22, 'M', 76, 'RS', 'Porto Alegre', true);
-insert into Pessoa values(897098, 'Fernanda', 23, 'F', 65, 'SP', 'Araraquara', false);
-insert into Pessoa values(098897, 'Marcia', 28, 'F', 58, 'MG', 'Poços de Caldas', true);
-insert into Pessoa values(901231, 'Enzo', 18, 'M', 72, 'MG', 'Santa Rita', true);
-insert into Pessoa values(232234, 'José', 33, 'M', 81, 'RJ', 'Cabo Frio', true);
-insert into Pessoa values(908554, 'Joana', 45, 'F', 61, 'RJ', 'Rio de Janeiro', false);
-insert into Pessoa values(998732, 'Sandra', 34, 'F', 55, 'MG', 'Congonhal', true);
-insert into Pessoa values(872343, 'Mateus', 21, 'M', 88, 'BA', 'Salvador', false);
-insert into Pessoa values(656538, 'Samara', 28, 'F', 61, 'MG', 'Pouso Alegre', true);
-insert into Pessoa values(324123, 'Fran', 19, 'F', 68, 'SP', 'Campinas', true);
-insert into Pessoa values(212276, 'Roberta', 25, 'F', 65, 'RJ','Niterói', false);
+--Script para ser usado nos exercícios de agrupamento
+--Comandos de insert para fazer a validação das consultas:
+
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (15, 'Jonas', 30,   50, 'M', 'RJ','Cabo Frio', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (3, 'José', 22,     55, 'M', 'MG','Cachoeira', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (8, 'Lorenzo', 17,  60, 'M', 'MG','Cachoeira', False);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (10, 'Ozama', 25,   65, 'M', 'MG','Cachoeira', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (14, 'Pedro', 20,   70, 'M', 'SP','Campinas', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (18, 'Júlia', 41,   75, 'F', 'SP','Campinas', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (16, 'Mateus', 40,  50, 'M', 'RJ','Niterói', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (17, 'Fernanda', 40,55, 'F', 'SP','Osasco', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (1, 'João', 20,     60, 'M', 'MG','Pouso Alegre', False);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (4, 'Joelma', 35,   65, 'F', 'MG','Pouso Alegre', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (7, 'Valentina', 26,70, 'F', 'MG','Pouso Alegre', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (11, 'Jane', 30,    75, 'F', 'MG','Pouso Alegre', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (2, 'Maria', 30,    50, 'F', 'MG','Santa Rita', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (6, 'Joaquim', 40,  55, 'M', 'MG','Santa Rita', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (12, 'Gustavo', 15, 60, 'M', 'MG','Santa Rita', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (5, 'Enzo', 13,     65, 'M', 'SP','São Paulo', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (9, 'Marta', 28,    70, 'F', 'SP','São Paulo', True);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (13, 'Jurema', 27,  75, 'F', 'SP','São Paulo', False);
+insert into Pessoa (cpf, nome, idade, peso, sexo, estado, cidade, ativo) values (19, 'Márcia', 27,  50, 'F', 'RJ','Cabo Frio', False);
+
+
+ -- exercicios
 
 select * from Pessoa;
 
-select sum(peso) from Pessoa;
+ -- 1 round(, 2) passa o numero de casas q vai imprimir 
+select round(avg(idade), 2) as Media from Pessoa;
 
-select avg(peso) as mediaPeso, sum(peso) as pesoTotal, avg(idade) as mediaIdade, sum(idade) as idadeTotal from Pessoa; 
-
-select count(cpf) from Pessoa
+ -- 2
+select round(avg(idade), 2) as media_idade_mulheres from Pessoa 
 where sexo = 'F';
 
-select sum(peso) from Pessoa 
-where estado = 'MG';
+ -- 3
+select min(idade) as menor, max(idade) as maior from Pessoa 
+where sexo = "M";
 
-	-- soma dos pesos para cada estado (Agrupamento 'GROUP BY')
+ -- 4
+select count(cpf) as numero, round(sum(idade),2) as soma_idade, max(idade) as maior_idade,
+min(idade) as menor_idade, round(avg(idade), 2) as media
+from Pessoa;
 
-select sum(peso) as soma, estado from Pessoa
-group by estado;
+ -- 5
+select round(avg(idade), 2) as mediaIdade, sexo from Pessoa 
+group by sexo;
 
-	-- soma dos pesos de cada sexo em cada estado
-	 
-select sum(peso) as soma, estado, sexo from Pessoa
-group by estado, sexo;
+ -- 6
+select round(avg(idade), 2) as mediaIdade, cidade from pessoa 
+group by cidade;
 
+ -- 7
 
-	-- soma das cidades por cada estado
-
-select count(cidade) as cidade_Soma, estado from Pessoa
-group by estado;
 
